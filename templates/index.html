@@ -36,10 +36,10 @@
     {% for review in latest_reviews %}
     <div class="review-item">
         <h3>{{ review.movie.title }}</h3>
-        <p>User: {{ review.user.display_name}}</p>
-        <p>Review: {{ review.review_text }}</p>
-        <p>Rating: {{ review.rating }}</p>
-        <p>Posted on: {{ review.review_date }}</p>
+        <p><strong>User:</strong> {{ review.user.display_name}}</p>
+        <p><strong>Review:</strong> {{ review.review_text }}</p>
+        <p><strong>Rating:</strong> {{ review.rating }}</p>
+        <p><strong>Posted on:</strong> {{ review.review_date }}</p>
     </div>
     {% endfor %}
 </div>
