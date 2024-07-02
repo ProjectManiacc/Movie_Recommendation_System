@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'movie_recommendation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'movie_recommendation_db',
+        'NAME': 'movie_recommendation_database',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'ChlopakiTab',
         'HOST': 'localhost',
         'PORT': '5432',
     }

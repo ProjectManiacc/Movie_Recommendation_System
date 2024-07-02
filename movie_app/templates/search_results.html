@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Wyniki wyszukiwania</h1>
+{% if movies %}
+    <style>
+        .center-table {
+        margin-left:15% ;
+        margin-right: auto;
+        width: 60%;
+        }
+    </style>
+    <table class="center-table">
+
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td>
+                    <a href="{% url 'movie_app:movie_details' movie_id=movie.movie_id %}">{{ movie.title }}</a>
+
+                </td>
+                <td>{{ movie.production_year }}</td>
+                <td>
+                    {% if movie.photo_url %}
+                        <a href="{% url 'movie_app:movie_details' movie_id=movie.movie_id %}"><img src="{{ movie.photo_url }}" alt="{{ movie.title }}" style="height: 100px;"></a>
+                    {% else %}
+                        Brak zdjęcia
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Brak wyników dla zapytania.</p>
+{% endif %}
+{% endblock %}

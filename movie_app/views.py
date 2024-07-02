@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Movies
 from review_app.models import Reviews
+from django.http import JsonResponse
+from django import forms
 
 
 # Create your views here.
@@ -26,3 +28,6 @@ def display_sample_movie_details(request):
         'reviews': reviews
     }
     return render(request, 'movie_details.html', context=context)
+
+
+

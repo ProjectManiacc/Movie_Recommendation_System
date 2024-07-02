@@ -20,13 +20,12 @@
 <header>
     <div class="top-bar">
         <div class="search-bar">
-            <form action="/search" method="get">
-                <input type="text" name="q" placeholder="Search...">
+            <form action="/search" method="get" autocomplete="off">
+                <input type="text" name="q" placeholder="Search..." onkeyup="searchMovies(this.value)">
                 <button type="submit">Search</button>
             </form>
+            <div id="search-results"></div>
         </div>
-
-
     </div>
     <nav>
         <a href="/">Home</a>
