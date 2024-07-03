@@ -21,10 +21,16 @@ def about(request):
 
 def search_view(request):
     query = request.GET.get('q', '').strip()
-    movies = Movies.objects.filter(title__icontains=query) if query else []
+    movies = Movies.objects.filter(title__icontains=query).distinct('title') if query else []
     return render(request, 'search_results.html', {'movies': movies})
 
-
+def search_movies(request):
+    query = request.GET.get('q', '').strip()
+    if query:
+        movies = Movies.objects.filter(title__icontains=query).distinct('title')[:8]
+        results = [{'title': movie.title} for movie in movies]
+        return JsonResponse(results, safe=False)
+    return JsonResponse({'message': 'No results found'}, status=404)
 
 
 

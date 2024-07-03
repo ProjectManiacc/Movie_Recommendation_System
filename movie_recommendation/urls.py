@@ -29,6 +29,8 @@ urlpatterns = [
     path('reviews/', include('review_app.urls')),
     path('search/', views.search_view, name='search'),
     path('movies/', include(('movie_app.urls', 'movie_app'), namespace='movie_app')),
+    path('movies/search/', views.search_movies, name='search_movies'),
+
 
 ]
 
