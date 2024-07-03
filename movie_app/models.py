@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.apps import apps
 
 class Movies(models.Model):
     movie_id = models.AutoField(primary_key=True)
@@ -33,7 +33,8 @@ class Movies(models.Model):
     @classmethod
     def get_popular_movies(cls):
         distinct_movies = cls.get_distinct_movies()
-        scored_movies = [(movie, movie.rating * movie.votes) for movie in distinct_movies if movie.rating is not None and movie.votes is not None]
+        scored_movies = [(movie, movie.rating * movie.votes) for movie in distinct_movies if
+                         movie.rating is not None and movie.votes is not None]
         scored_movies.sort(key=lambda x: x[1], reverse=True)
         return [movie for movie, score in scored_movies[:3]]
 
@@ -93,11 +94,14 @@ class Movies(models.Model):
             genres = Genredetails.objects.filter(genre__movie=movie)
             directors = Directorsdetails.objects.filter(directors__movie=movie)
             casts = Moviecastdetails.objects.filter(moviecast__movie=movie)
+            Reviews = apps.get_model('review_app', 'Reviews')
+            reviews = Reviews.get_review_for_movie(movie)
             movie_details = {
                 'movie': movie,
                 'genres': genres,
                 'directors': directors,
-                'casts': casts
+                'casts': casts,
+                'reviews': reviews,
             }
 
             movies_details.append(movie_details)
@@ -105,7 +109,7 @@ class Movies(models.Model):
 
     @classmethod
     def get_movies_head(cls):
-        return cls.get_movies_details()[:5]
+        return cls.get_movies_details()[:100]
 
     @classmethod
     def query_movies(cls, title=None, genre=None):

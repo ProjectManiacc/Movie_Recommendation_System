@@ -90,18 +90,12 @@ nav a:hover {
     border-radius: 5px;
 }
 
-a {
-    color: white;
-    text-decoration: underline;
-    margin: 0 15px;
-    padding: 5px 10px;
-}
-
 .movie-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 70px;
+    gap: 100px;
+    margin-bottom: 0px;
 }
 
 .movie-item {
@@ -110,6 +104,7 @@ a {
     padding: 10px;
     width: 200px;
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .poster {
@@ -117,26 +112,53 @@ a {
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+
 }
 
 .review-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 60px;
+    padding: 50px;
+
 }
 
 .review-item {
     background-color: #0C151A;
-    border-radius: 10px;
+    max-width: 350px;
+    flex: 1 1 300px;
     padding: 10px;
-    width: 300px;
-    text-align: center;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
 }
 
-.star-rating {
-    display: inline-block;
+.review-item h3 {
+    margin-bottom: 20px;
+    color: white;
+    text-align: left;
+
 }
+
+.review-item p {
+    margin: 5px 0;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.movie-grid .star-rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.review-grid .star-rating {
+    display: flex;
+   text-align: left;
+    margin-top: 5px;
+}
+
 
 .star {
     font-size: 1.5em;
@@ -188,7 +210,7 @@ a {
     display: inline-block;
     width: 265px;
     margin-top: 10px;
-    margin-right: calc(10px);
+    margin-right: 10px;
 }
 
 .register-button:hover {
@@ -231,6 +253,387 @@ a {
 .register-page-button:hover {
     background-color: #575a5e;
 }
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/* styles for movies.html */
+.movie-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.movie-card {
+    background-color: #0C151A;
+    border-radius: 10px;
+    width: 240px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+.movie-card-header img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #575a5e;
+}
+
+.movie-card-body {
+    padding: 15px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.movie-card-body h4 a {
+    color: #1E90FF;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.movie-card-body h4 a:hover {
+    text-decoration: underline;
+}
+
+.movie-card-body p {
+    margin: 10px 0;
+
+
+}
+
+.reviews .review {
+    background-color: #1A242F;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+
+
+
+/* Container for movie details */
+.movie-details-container {
+    display: flex;
+    background-color: #0C151A;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    color: #FFFFFF;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* Styling for the movie poster */
+.movie-poster img {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Container for movie info beside the poster */
+.movie-info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #FFFFFF;
+    text-align: left;
+    margin-left: 30px;
+    max-width: 100%;
+
+}
+
+.movie-info h1 {
+    color: #1E90FF;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.movie-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+    width: 100%;
+    position: relative;
+    padding: 2px;
+}
+
+.movie-info p strong {
+    width: 150px;
+    display: inline-block;
+    color: #1E90FF;
+    padding: 2px;
+
+}
+.movie-info p span {
+    position: absolute;
+    text-align: left;
+    padding: 2px;
+
+
+}
+
+
+
+
+
+/* Container for the reviews section */
+.reviews-container-mdetails {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #0C151A;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Individual review item styling in movie details */
+.review-item-mdetails {
+    background-color: #1A242F;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: calc(100% - 50px);
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.review-item-mdetails h3 {
+    text-align: left;
+    color: #1E90FF;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.review-item-mdetails p {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 5px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.review-item-mdetails b {
+    text-align: left;
+    color: #1E90FF;
+    font-weight: bold;
+}
+
+
+/* Container for the reviews section */
+.reviews-container {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #1A242F;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Individual review item styling */
+.review-item{
+    background-color: #0C151A;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.review-item h3 {
+    color: #1E90FF;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.review-item p {
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.review-item b {
+    color: #1E90FF;
+    font-weight: bold;
+}
+
+/* Styling for the add review button */
+.add-review-button {
+    background-color: #1E90FF;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.add-review-button:hover {
+    background-color: #575a5e;
+}
+
+/* Styles for add_review.html */
+
+.add-review-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #232F3E, #0C151A);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.add-review-container h1, .add-review-container h3 {
+    color: #1E90FF;
+    margin-bottom: 20px;
+}
+
+.add-review-container img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+.add-review-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.add-review-container label {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 5px;
+    color: #1E90FF;
+}
+
+.add-review-container textarea,
+.add-review-container input[type="number"],
+.add-review-container input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    background-color: #1A242F;
+    color: #FFFFFF;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.add-review-container textarea {
+    resize: none; /* This line prevents resizing of the textarea */
+}
+
+.add-review-container textarea:focus,
+.add-review-container input[type="number"]:focus,
+.add-review-container input[type="text"]:focus {
+    outline: none;
+    background-color: #2A3948;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+}
+
+.add-review-container input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1E90FF;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-review-container input[type="submit"]:hover {
+    background-color: #575a5e;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*comment section */
+.comment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #0C1216;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.comment-item {
+    background-color: #1A242F;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.comment-item p {
+    margin: 5px 0;
+}
+
+.comment-grid h5 {
+    color: #1E90FF;
+    margin-top: 20px;
+}
+
+.comment-grid form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-grid textarea {
+    resize: none;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #18222B;
+    color: #FFFFFF;
+    font-size: 1em;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-grid textarea:focus {
+    outline: none;
+    background-color: #27343F;
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+}
+
+.comment-grid input[type="submit"] {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1E90FF;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.comment-grid input[type="submit"]:hover {
+    background-color: #575a5e;
+}
+
+
 
 main {
     text-align: center;

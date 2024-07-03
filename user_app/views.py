@@ -6,6 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
@@ -27,7 +28,7 @@ def display_user_details_page(request, user_id):
 
 @login_required(login_url='user_app:login')
 def display_sample_user_details_page(request):
-    user = Users.get_user(2)
+    user = Users.get_user(1)
     user_favorite_movies = user.get_user_favorite_movies()
     user_reviews = user.get_user_reviews()
     context = {'user': user, 'user_favorite_movies': user_favorite_movies,

@@ -1,5 +1,6 @@
 from django import forms
-from .models import Reviews
+from .models import Reviews, Moviecomments
+
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -9,3 +10,9 @@ class ReviewForm(forms.ModelForm):
             'rating': forms.NumberInput(attrs={'class': 'form-control'}),
             'review_text': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Moviecomments
+        fields = ['comment_text']

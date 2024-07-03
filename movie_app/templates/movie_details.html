@@ -1,72 +1,56 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Movies Details
+    Movie Details
 {% endblock %}
 
 {% block content %}
-<h1>Movie details Page</h1>
+<div class="movie-details-container">
+    <div class="movie-poster">
+        <img src="{{ movie_details.movie.photo_url }}" alt="Movie Poster">
+    </div>
+    <div class="movie-info">
+    <h1>{{ movie_details.movie.title }}</h1>
+    <p><strong>Production Year:</strong> <span>{{ movie_details.movie.production_year }}</span></p>
+    <p><strong>Rating:</strong> <span>{{ movie_details.movie.rating }}</span></p>
+    <p><strong>Certificate:</strong> <span>{{ movie_details.movie.certificate }}</span></p>
+    <p><strong>Duration:</strong> <span>{{ movie_details.movie.duration }} minutes</span></p>
+    <p><strong>Votes:</strong> <span>{{ movie_details.movie.votes }}</span></p>
 
-<table>
-    <tr>
-        <th>movie_id</th>
-        <th>tittle</th>
-        <th>production_year</th>
-        <th>rating</th>
-        <th>certificate</th>
-        <th>duration</th>
-        <th>description</th>
-        <th>votes</th>
-        <th>photo_url</th>
-
-        <th>genre</th>
-        <th>director</th>
-        <th>cast</th>
-    </tr>
-
-    <tr>
-        <td>{{ movie_details.movie.movie_id }}</td>
-        <td>{{ movie_details.movie.title }}</td>
-        <td>{{ movie_details.movie.production_year }}</td>
-        <td>{{ movie_details.movie.rating }}</td>
-        <td>{{ movie_details.movie.certificate }}</td>
-        <td>{{ movie_details.movie.duration }}</td>
-        <td>{{ movie_details.movie.description }}</td>
-        <td>{{ movie_details.movie.votes }}</td>
-        <td><img src="{{ movie_details.movie.photo_url }}" class="poster"></td>
-
-        <td>
+        <p><strong>Genre:</strong>
             {% for genre in movie_details.genres %}
-                {{ genre.display_name }}
+                {{ genre.display_name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
-        </td>
-        <td>
+        </p>
+        <p><strong>Director:</strong>
             {% for director in movie_details.directors %}
-                {{ director.display_name }}
+                {{ director.display_name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
-        </td>
-        <td>
+        </p>
+        <p><strong>Cast:</strong>
             {% for cast in movie_details.casts %}
-                {{ cast.display_name }}
+                {{ cast.display_name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
-        </td>
-    </tr>
-</table>
+        </p>
+        <p><strong>Description:</strong> <span>{{ movie_details.movie.description }}</span></p>
+    </div>
+</div>
+
 
 <h3>Reviews</h3>
-<table>
-    <tr>
-        <th>user</th>
-        <th>review_text</th>
-    </tr>
+<div class="reviews-container-mdetails">
     {% for review in reviews %}
-    <tr>
-        <td>{{ review.user }}</td>
-        <td>{{ review.review_text }}</td>
-    </tr>
+        <div class="review-item-mdetails">
+            <h3>{{ review.user }}</h3>
+            <p>{{ review.review_text }}</p>
+        </div>
+        <h4>Comments:</h4>
+        {% for comment in review.moviecomments_set.all %}
+             <p>{{ comment.user.display_name }}: {{ comment.comment_text }}</p>
+        {% endfor %}
     {% endfor %}
-</table>
-<a href="{% url 'review_app:add_review' movie_id=movie_details.movie.movie_id %}">Add Review</a>
+    <a href="{% url 'review_app:add_review' movie_id=movie_details.movie.movie_id %}" class="add-review-button">Add Review</a>
+</div>
 {% endblock %}
 
 {% block extra_css %}

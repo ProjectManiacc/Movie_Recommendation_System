@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Home
+    Strona Główna
 {% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
-<p>Welcome to the Movie Recommendation App!</p>
+<h1>Strona Główna</h1>
+<p>Witamy w aplikacji rekomendującej filmy!</p>
 
 <h2>Najpopularniejsze Filmy</h2>
 <div class="movie-grid">
     {% for movie in popular_movies %}
     <div class="movie-item">
-        <img class="poster" src="{{ movie.photo_url }}" alt="{{ movie.title }}">
-        <h3>{{ movie.title }}</h3>
-        <p>Rating: {{ movie.rating }}</p>
+        <a href="{% url 'movie_app:movie_details' movie_id=movie.movie_id %}">
+            <img class="poster" src="{{ movie.photo_url }}" alt="{{ movie.title }}">
+            <h3>{{ movie.title }}</h3>
+        </a>
+        <p>Ocena: {{ movie.rating }}</p>
         <div class="star-rating">
             {% for star in movie.get_star_rating.full_stars %}
                 <span class="star filled">&#9733;</span>
@@ -26,7 +28,7 @@
                 <span class="star">&#9734;</span>
             {% endfor %}
         </div>
-        <p>Number of votes: {{ movie.votes }}</p>
+        <p>Liczba głosów: {{ movie.votes }}</p>
     </div>
     {% endfor %}
 </div>
@@ -36,10 +38,23 @@
     {% for review in latest_reviews %}
     <div class="review-item">
         <h3>{{ review.movie.title }}</h3>
-        <p>User: {{ review.user.display_name}}</p>
-        <p>Review: {{ review.review_text }}</p>
-        <p>Rating: {{ review.rating }}</p>
-        <p>Posted on: {{ review.review_date }}</p>
+        <p><strong>Użytkownik:</strong> {{ review.user.display_name }}</p>
+        <p class="review-item-content"><strong>Recenzja:</strong> {{ review.review_text }}</p>
+        <p><strong>Ocena:</strong> {{ review.rating }}</p>
+        <div class="star-rating">
+            {% for star in review.get_star_rating.full_stars %}
+                <span class="star filled">&#9733;</span>
+            {% endfor %}
+            {% if review.get_star_rating.half_stars %}
+                <span class="star">&#9733;</span>
+            {% endif %}
+            {% for star in review.get_star_rating.empty_stars %}
+                <span class="star">&#9734;</span>
+            {% endfor %}
+        </div>
+        <p><strong>Dodano:</strong> {{ review.review_date|date:"F d, Y" }}</p>
+
+
     </div>
     {% endfor %}
 </div>

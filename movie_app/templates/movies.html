@@ -9,65 +9,39 @@ Movies
 <p>Movies table joined</p>
 <h3>Movies</h3>
 
-<table>
-    <tr>
-        <th>movie_id</th>
-        <th>tittle</th>
-        <th>production_year</th>
-        <th>rating</th>
-        <th>certificate</th>
-        <th>duration</th>
-        <th>description</th>
-        <th>votes</th>
-        <th>photo_url</th>
-        <th>genre</th>
-        <th>director</th>
-        <th>cast</th>
-        <th>reviews</th>
-    </tr>
+<div class="movie-card-container">
     {% for movie_details in movies_details %}
-    <tr>
-        <td>{{ movie_details.movie.movie_id }}</td>
-        <td>
-            <a href="{% url 'movie_app:movie_details' movie_id=movie_details.movie.movie_id %}">
-                {{ movie_details.movie.title }}
-            </a>
-        </td>
-        <td>{{ movie_details.movie.production_year }}</td>
-        <td>{{ movie_details.movie.rating }}</td>
-        <td>{{ movie_details.movie.certificate }}</td>
-        <td>{{ movie_details.movie.duration }}</td>
-        <td>{{ movie_details.movie.description }}</td>
-        <td>{{ movie_details.movie.votes }}</td>
-        <td><img src="{{ movie_details.movie.photo_url }}" class="poster"> </td>
-        <td>
-            {% for genre in movie_details.genres %}
-            {{ genre.display_name }}
-            {% endfor %}
-        </td>
-        <td>
-            {% for director in movie_details.directors %}
-            {{ director.display_name }}
-            {% endfor %}
-        </td>
-        <td>
-            {% for cast in movie_details.casts %}
-            {{ cast.display_name }}
-            {% endfor %}
-        </td>
-        <td>
-            {% for review in movie_details.reviews %}
-            <b>{{ review.user }}</b>
-            <p>{{ review.review_text }}</p>
-            {% endfor %}
-        </td>
-        <td>
-            {% for review in movie_details.reviews %}
-            <b>{{ review.user }}</b>
-            <p>{{ review.review_text }}</p>
-            {% endfor %}
-        </td>
-    </tr>
+    <div class="movie-card">
+        <div class="movie-card-header">
+            <img src="{{ movie_details.movie.photo_url }}" class="poster" alt="{{ movie_details.movie.title }} poster">
+        </div>
+        <div class="movie-card-body">
+            <h4>
+                <a href="{% url 'movie_app:movie_details' movie_id=movie_details.movie.movie_id %}">
+                    {{ movie_details.movie.title }}
+                </a>
+            </h4>
+            <p><strong>Year:</strong> {{ movie_details.movie.production_year }}</p>
+            <p><strong>Rating:</strong> {{ movie_details.movie.rating }}</p>
+            <p><strong>Votes:</strong> {{ movie_details.movie.votes }}</p>
+            <p><strong>Genres:</strong>
+                {% for genre in movie_details.genres %}
+                    {{ genre.display_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p><strong>Directors:</strong>
+                {% for director in movie_details.directors %}
+                    {{ director.display_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            <p><strong>Cast:</strong>
+                {% for cast in movie_details.casts %}
+                    {{ cast.display_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+
+        </div>
+    </div>
     {% endfor %}
-</table>
+</div>
 {% endblock %}
